@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/details_contact">
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="128dp"
+        android:text="Name"
+        android:textColor="@color/black"
+        android:textSize="34sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/surname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="Surname"
+        android:textColor="@color/black"
+        android:textSize="34sp"
+        app:layout_constraintEnd_toEndOf="@+id/name"
+        app:layout_constraintStart_toStartOf="@+id/name"
+        app:layout_constraintTop_toBottomOf="@+id/name" />
+
+    <TextView
+        android:id="@+id/number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="Phone"
+        android:textColor="@color/black"
+        android:textSize="34sp"
+        app:layout_constraintEnd_toEndOf="@+id/surname"
+        app:layout_constraintStart_toStartOf="@+id/surname"
+        app:layout_constraintTop_toBottomOf="@+id/surname" />
+
+    <EditText
+        android:id="@+id/edit_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:minHeight="48dp"
+        android:text="Name"
+        app:layout_constraintBaseline_toBaselineOf="@+id/name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/name" />
+
+    <EditText
+        android:id="@+id/edit_surname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:minHeight="48dp"
+        android:text="Name"
+        app:layout_constraintBaseline_toBaselineOf="@+id/surname"
+        app:layout_constraintEnd_toEndOf="@+id/edit_name"
+        app:layout_constraintStart_toStartOf="@+id/edit_name" />
+
+    <EditText
+        android:id="@+id/edit_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="number"
+        android:minHeight="48dp"
+        android:text="Name"
+        app:layout_constraintBaseline_toBaselineOf="@+id/number"
+        app:layout_constraintEnd_toEndOf="@+id/edit_surname"
+        app:layout_constraintStart_toStartOf="@+id/edit_surname" />
+
+    <Button
+        android:id="@+id/save_btn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Save"
+        app:layout_constraintEnd_toEndOf="@+id/edit_number"
+        app:layout_constraintStart_toStartOf="@+id/number"
+        app:layout_constraintTop_toBottomOf="@+id/edit_number" />
+</androidx.constraintlayout.widget.ConstraintLayout>
