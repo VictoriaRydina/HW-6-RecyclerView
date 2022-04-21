@@ -14,7 +14,6 @@ class ContactsList : Fragment(R.layout.list_contact) {
 
     private lateinit var binding: ListContactBinding
     private lateinit var adapter: ContactAdapter
-    private val viewModel: ContactListViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -31,7 +30,7 @@ class ContactsList : Fragment(R.layout.list_contact) {
     }
 
     private val faker = Faker.instance()
-    private var contacts: List<Contact> = (1..120).map {
+    private var contacts: MutableList<Contact> = (1..120).map {
         Contact(
             id = it,
             name = faker.name().firstName(),
@@ -39,17 +38,21 @@ class ContactsList : Fragment(R.layout.list_contact) {
             number = faker.phoneNumber().cellPhone(),
             image = "https://picsum.photos/id/200/200"
         )
-    }
+    } as MutableList<Contact>
 
     private fun init() {
         binding.apply {
-            adapter = ContactAdapter(contacts, object : OpenDetailsContact {
-                override fun openDetails(contact: List<Contact>) {
-                    activity?.supportFragmentManager?.beginTransaction()?.replace(
-                        R.id.activity_frame_layout, ContactDetails()
-                    )?.addToBackStack(null)?.commit()
+            adapter = ContactAdapter(
+                contacts,
+                object : OpenContactDetails {
+                    override fun openDetails(contact: Contact) {
+                        activity?.supportFragmentManager?.beginTransaction()
+                            ?.replace(R.id.activity_frame_layout, ContactDetails(contact))
+                            ?.addToBackStack(null)
+                            ?.commit()
+                    }
                 }
-            })
+            )
             rcView.layoutManager = LinearLayoutManager(
                 context,
                 LinearLayoutManager.VERTICAL, false

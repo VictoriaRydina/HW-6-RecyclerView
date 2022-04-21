@@ -5,7 +5,7 @@ import android.os.Bundle
 import androidx.fragment.app.FragmentManager
 import com.example.hw_6_recyclerview.databinding.ActivityMainBinding
 
-class MainActivity : AppCompatActivity(), OpenDetailsContact {
+class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
@@ -21,15 +21,6 @@ class MainActivity : AppCompatActivity(), OpenDetailsContact {
         supportFragmentManager
             .beginTransaction()
             .replace(R.id.activity_frame_layout, ContactsList())
-            .commit()
-    }
-
-    override fun openDetails(contact: List<Contact>) {
-        supportFragmentManager
-            .popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
-        supportFragmentManager
-            .beginTransaction()
-            .replace(R.id.activity_frame_layout, ContactDetails())
             .commit()
     }
 }

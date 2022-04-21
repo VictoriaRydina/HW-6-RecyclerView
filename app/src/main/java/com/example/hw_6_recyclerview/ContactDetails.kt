@@ -5,9 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.LifecycleOwner
 import com.example.hw_6_recyclerview.databinding.DetailsContactBinding
 
-class ContactDetails: Fragment(R.layout.details_contact) {
+class ContactDetails(private val contact: Contact): Fragment(R.layout.details_contact) {
 
     private lateinit var binding: DetailsContactBinding
 
@@ -17,6 +19,13 @@ class ContactDetails: Fragment(R.layout.details_contact) {
         savedInstanceState: Bundle?
     ): View {
         binding = DetailsContactBinding.inflate(inflater, container, false)
+
+        binding.apply {
+            editName.setText(contact.name)
+            editSurname.setText(contact.surname)
+            editNumber.setText(contact.number)
+        }
+
         return binding.root
     }
 }

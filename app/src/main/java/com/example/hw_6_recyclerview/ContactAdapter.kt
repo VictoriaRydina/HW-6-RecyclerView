@@ -1,19 +1,21 @@
 package com.example.hw_6_recyclerview
 
+import android.app.AlertDialog
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.hw_6_recyclerview.databinding.ContactItemBinding
 
-class ContactAdapter(contacts: List<Contact>, private val openDetailsContact: OpenDetailsContact) :
+class ContactAdapter(contacts: MutableList<Contact>, private val openContactDetails: OpenContactDetails) :
     RecyclerView.Adapter<ContactAdapter.ContactHolder>() {
 
     private lateinit var binding: ContactItemBinding
     private val contactsList = contacts
-
 
     //Создается элемент
     class ContactHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -21,7 +23,6 @@ class ContactAdapter(contacts: List<Contact>, private val openDetailsContact: Op
         val surnameTextView: TextView = view.findViewById(R.id.contact_surname)
         val numberTextView: TextView = view.findViewById(R.id.contact_number)
         val imageView: ImageView = view.findViewById(R.id.iv_image)
-        var rcView = view.findViewById<RecyclerView>(R.id.rcView)
     }
 
     // Элемент отрисовывается на экране
@@ -39,9 +40,21 @@ class ContactAdapter(contacts: List<Contact>, private val openDetailsContact: Op
         viewHolder.nameTextView.text = contactsList[position].name
         viewHolder.surnameTextView.text = contactsList[position].surname
         viewHolder.numberTextView.text = contactsList[position].number
-        //viewHolder.imageView = createContactsList()[position].image
-        viewHolder.rcView?.setOnClickListener {
-            openDetailsContact.openDetails(contactsList)
+
+//      viewHolder.imageView = createContactsList()[position].image
+
+        viewHolder.itemView.setOnClickListener {
+            openContactDetails.openDetails(contactsList[position])
+        }
+
+        viewHolder.itemView.setOnLongClickListener {
+            /// создать диалог назначить кнопки татйтл и потом сказать что по нажатию ок мы удалаяем элемет
+            //val builder = AlertDialog.Builder(this)
+
+
+            contactsList.removeAt(position)
+            notifyDataSetChanged()
+            true
         }
     }
 }

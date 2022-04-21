@@ -3,8 +3,8 @@ package com.example.hw_6_recyclerview
 import androidx.recyclerview.widget.DiffUtil
 
 class ContactDiffUtil(
-    private val oldList: ArrayList<Contact>,
-    private val newList: ArrayList<Contact>
+    private val oldList: List<Contact>,
+    private val newList: List<Contact>
 ) : DiffUtil.Callback() {
 
     override fun getOldListSize(): Int {
